@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PorQueEuFiz — Arquivo de "Por que eu fiz isso?"</title>
+<style>
+:root{
+  --accent:#a3c9a8; /* verde pastel */
+  --accent2:#f7b267; /* laranja pastel */
+  --accent3:#f08080; /* vermelho pastel */
+  --muted:#6b7280;
+  --bg:white;
+  --card:#fdfdfd;
+  --glass:rgba(0,0,0,0.04);
+  --btn-neutral:#ddd;
+}
+*{box-sizing:border-box}
+body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;margin:0;background:var(--bg);color:#333;-webkit-font-smoothing:antialiased}
+.container{max-width:1100px;margin:36px auto;padding:20px}
+header{display:flex;flex-direction:column;align-items:center;margin-bottom:24px}
+header img.banner{width:100%;max-height:200px;object-fit:cover;border-radius:12px;margin-bottom:12px}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:700;color:white;overflow:hidden}
+.logo img{width:100%;height:100%;object-fit:cover;border-radius:10px;}
+h1{margin:0;font-size:20px}
+header p{margin:0;color:var(--muted);font-size:13px}
+.hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:start;margin-bottom:28px}
+.card{background:var(--card);padding:18px;border-radius:20px;box-shadow:0 6px 18px rgba(0,0,0,0.08);}
+.hero .intro h2{margin-top:6px;margin-bottom:8px}
+.cta{display:flex;gap:12px;margin-top:12px}
+.btn{background:var(--btn-neutral);border:none;padding:10px 14px;border-radius:10px;color:white;font-weight:600;cursor:pointer;transition:0.2s}
+.btn:hover{filter:brightness(0.9)}
+.btn.ghost{background:transparent;border:1px solid var(--accent);color:var(--accent)}
+.btn.approve:hover{background:#4CAF50} /* verde ao passar */
+.btn.disapprove:hover{background:#F44336} /* vermelho ao passar */
+.features{display:flex;gap:12px;margin-top:12px}
+.feature{flex:1;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(0,0,0,0.02), transparent);font-size:14px}
+textarea,input[type=text]{width:100%;padding:10px;border-radius:12px;border:1px solid rgba(0,0,0,0.1);background:#fff;color:#333}
+textarea{height:120px}
+.tags-container{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;border:1px solid #ccc;padding:6px;border-radius:12px;min-height:40px;cursor:text}
+.tag-bubble{background:var(--glass);padding:6px 12px;border-radius:999px;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.tag-bubble span{cursor:pointer;font-weight:bold}
+.feed{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.post{padding:12px;border-radius:20px;background:#fafafa;transition:0.3s;position:relative;display:flex;flex-direction:column;max-height:500px;overflow:hidden;border:1px solid #000;}
+.post:hover{transform:scale(1.01)}
+.post .meta{font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
+.learn{margin-top:10px;font-size:13px;background:#f3f3f3;padding:10px;border-radius:12px;color:#444}
+.vote-box{display:flex;gap:10px;margin-top:10px;align-items:center;flex-wrap:wrap}
+.vote-result{margin-top:8px;font-size:13px;color:#444;opacity:0;transition:opacity 0.5s ease}
+.vote-bar{height:14px;width:100%;background:#eee;border-radius:7px;overflow:hidden;margin-top:4px;display:flex}
+.vote-fill-yes{background:var(--accent);height:100%;width:0;transition:width 0.8s ease}
+.vote-fill-no{background:var(--accent3);height:100%;width:0;transition:width 0.8s ease}
+.comment-btn{margin-left:auto;cursor:pointer;background:#eee;padding:4px 8px;border-radius:12px;font-size:13px;display:flex;align-items:center;gap:4px;transition:0.2s}
+.comment-btn:hover{filter:brightness(0.9)}
+.comment-section{margin-top:8px;display:none}
+.comment-section input{width:100%;padding:6px;margin-top:4px;border-radius:12px;border:1px solid #ccc}
+.comment-list{margin-top:6px;font-size:13px}
+.comment-item{background:#f1f1f1;padding:6px 10px;border-radius:12px;margin-top:4px}
+.reply-list div{background:#e3e3e3;padding:4px 8px;border-radius:10px;margin-top:2px}
+.show-more{cursor:pointer;color:var(--accent2);font-size:13px;margin-top:4px;user-select:none;}
+.highlight-green{background:#d4f7d0;padding:10px;border-radius:20px;margin-top:10px}
+.highlight-red{background:#ffd6d6;padding:10px;border-radius:20px;margin-top:10px}
+footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}
+@media (max-width:920px){.hero{grid-template-columns:1fr} .container{padding:12px} .logo{width:44px;height:44px}}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <img class="banner" src="http://www.petadm.ufc.br/wp-content/uploads/2020/05/banner.jpg" alt="Banner"/>
+  <div class="brand">
+    <div class="logo"><img src="https://i.pinimg.com/736x/45/7e/4f/457e4f3a06813153e196d9f5e2d28cd8.jpg" /></div>
+    <div>
+      <h1>PorQueEuFiz.com</h1>
+      <p>Errar é humano. Compartilhar é evoluir.</p>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="card intro">
+    <h2>Um arquivo de decisões malucas, arrependimentos e pequenas vitórias.</h2>
+    <p style="color:var(--muted)">Leia relatos reais, marque "já passei por isso" e aprenda com os outros — tudo sem identificação.</p>
+    <div id="highlights"></div>
+    <div class="features">
+      <div class="feature"><strong>Anônimo com graça</strong><div style="color:var(--muted);margin-top:6px">Nomes engraçados se você não colocar.</div></div>
+      <div class="feature"><strong>Tag de lição</strong><div style="color:var(--muted);margin-top:6px">Sempre que publicar, inclua o que aprendeu.</div></div>
+      <div class="feature"><strong>Comentários & votos</strong><div style="color:var(--muted);margin-top:6px">Interaja com os posts!</div></div>
+    </div>
+    <div class="cta">
+      <button class="btn" id="open-confess">Confessar algo</button>
+    </div>
+  </div>
+
+  <aside class="card confess-box">
+    <h3>Publicar (rápido)</h3>
+    <input type="text" id="txt-name" placeholder="Seu nome (opcional)"/>
+    <textarea id="txt-story" placeholder="Conte, em poucas linhas, por que você fez isso..." maxlength="1500"></textarea>
+    
+    <div class="tags-container" id="tags-container" tabindex="0"></div>
+    <input type="text" id="txt-tags" placeholder="Digite uma tag e pressione espaço"/>
+    <input type="text" id="txt-lesson" placeholder="O que você aprendeu?" />
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button class="btn" id="btn-post">Publicar</button>
+      <button class="btn ghost" id="btn-clear">Limpar</button>
+    </div>
+    <p style="color:var(--muted);font-size:12px;margin-top:8px">Limite de 1500 caracteres. Posts armazenados localmente.</p>
+  </aside>
+</section>
+
+<section>
+  <div class="card">
+    <h3 style="margin-top:0">Feed público</h3>
+    <label for="filterTag">Filtrar por tag: </label>
+    <input type="text" id="searchTag" placeholder="Pesquisar tags..."/>
+    <select id="filterTag">
+      <option value="">Todas</option>
+    </select>
+    <div class="feed" id="feed"></div>
+  </div>
+</section>
+
+<footer>
+  <div>PorQueEuFiz.com — MVP conceptual • Feito com carinho.</div>
+</footer>
+
+<script>
+const STORAGE_KEY='pq_posts_v4', VOTE_KEY='pq_votes_v4', COMMENT_KEY='pq_comments_v4';
+const badWords=["sexo","porn","fuck","pedofilia","nazista","nazi","merda","caralho","puta","bosta"];
+const funnyNames=[ "Blob","Blep","Plop","Blip","Flop","Zorp","Gloop","Sploosh","Floop","Glib","Bloop","Plip","Splop","Zibble","Blopz","Nibbl","Wobble","Glorp","Snorp","Flib","Ploop","Blurb","Zlurp","Splib","Dripz","Blarp","Wibbl","Gloopz","Plorp","Snib","Flurp","Blibber","Zlob","Sloop","Bloopz","Glibber","Flarp","Wloop","Drib","Snibber","Plib","Flobber","Glibz","Blorpz","Zlobb","Splurb","Wibber","Blibz","Floopz","Snorpz"];
+
+function filterBadWords(text){ let t=text.toLowerCase(); for(const w of badWords){ if(t.includes(w)) return true } return false }
+function loadPosts(){ return JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]') }
+function savePosts(posts){ localStorage.setItem(STORAGE_KEY,JSON.stringify(posts)) }
+function loadVotes(){ return JSON.parse(localStorage.getItem(VOTE_KEY)||'{}') }
+function saveVotes(v){ localStorage.setItem(VOTE_KEY,JSON.stringify(v)) }
+function loadComments(){ return JSON.parse(localStorage.getItem(COMMENT_KEY)||'{}') }
+function saveComments(c){ localStorage.setItem(COMMENT_KEY,JSON.stringify(c)) }
+function escapeHtml(s){ return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;') }
+function randomName(){ return funnyNames[Math.floor(Math.random()*funnyNames.length)] }
+
+// --- TAGS ---
+const tagInput=document.getElementById('txt-tags'), tagsContainer=document.getElementById('tags-container')
+let currentTags=[]
+function renderTags(){ tagsContainer.innerHTML=''; currentTags.forEach((t,i)=>{ const span=document.createElement('div'); span.className='tag-bubble'; span.innerHTML=`${escapeHtml(t)} <span onclick="removeTag(${i})">x</span>`; tagsContainer.appendChild(span) }) }
+function removeTag(i){ currentTags.splice(i,1); renderTags() }
+tagInput.addEventListener('keydown',e=>{ if(e.key===' '){ e.preventDefault(); const val=tagInput.value.trim(); if(val && !currentTags.includes(val)){ currentTags.push(val); renderTags() } tagInput.value='' } })
+tagsContainer.addEventListener('click',()=>tagInput.focus())
+
+// --- FEED ---
+function renderFeed(){
+  const feed=document.getElementById('feed'); feed.innerHTML=''
+  const posts=loadPosts().slice().reverse()
+  const votes=loadVotes(), comments=loadComments()
+  const filter=document.getElementById('filterTag').value.toLowerCase()
+  const search=document.getElementById('searchTag').value.toLowerCase()
+  let tagsSet=new Set()
+  if(posts.length===0){ feed.innerHTML='<div style="color:var(--muted);padding:12px">Nenhum relato por enquanto.</div>'; return; }
+
+  posts.forEach((p,idx)=>{
+    if(p.tags) p.tags.forEach(t=>tagsSet.add(t))
+    if(filter && !(p.tags||[]).map(t=>t.toLowerCase()).includes(filter)) return
+    if(search && !(p.tags||[]).map(t=>t.toLowerCase()).some(t=>t.includes(search))) return
+
+    const realIndex=posts.length-1-idx
+    const total=(p.aprov||0)+(p.desaprov||0)
+    const percentA=total?((p.aprov||0)/total*100).toFixed(0):0
+    const percentD=total?((p.desaprov||0)/total*100).toFixed(0):0
+    const userVote=votes[p.created]||null
+    const postComments=comments[p.created]||[]
+    const nameDisplay=p.name?escapeHtml(p.name):randomName()
+
+    let textShort=p.text, long=false
+    if(textShort.length>300){ textShort=textShort.slice(0,300)+'...'; long=true }
+
+    const commentsHtml = postComments.map((c,i)=>{
+      const replies=c.replies||[]
+      return `<div class="comment-item"><strong>${escapeHtml(c.user)}</strong>: ${escapeHtml(c.text)}
+        <div class="reply-list">${replies.map(r=>`<div><strong>${escapeHtml(r.user)}</strong>: ${escapeHtml(r.text)}</div>`).join('')}</div>
+        <input type="text" placeholder="Responder..." onkeydown="if(event.key==='Enter'){addReply('${p.created}',${i},this.value);this.value=''}"></div>`
+    }).join('')
+
+    const el=document.createElement('article'); el.className='post'
+    el.innerHTML=`
+      <div class="meta">${p.tags? p.tags.map(t=>`<span class="tag">${t}</span>`).join(' '):'<span class="tag">vida</span>'} <span>${new Date(p.created).toLocaleString()}</span></div>
+      <div style="margin-top:8px"><strong>${nameDisplay}</strong>: <span class="post-text">${escapeHtml(textShort).replace(/\n/g,'<br/>')}</span>
+        ${long?'<div class="show-more" onclick="toggleText(this)">Ver mais</div>':''}
+      </div>
+      <div class="learn">O que aprendi: ${escapeHtml(p.lesson||'—')}</div>
+      <div class="vote-box">
+        ${userVote?`<div class="vote-result" style="opacity:1">${total} votos • 👍 ${percentA}% • 👎 ${percentD}%</div>`:` 
+        <button class="btn approve" onclick="vote(${realIndex},'aprov',this)">Aprovar</button>
+        <button class="btn disapprove" onclick="vote(${realIndex},'desaprov',this)">Desaprovar</button>
+        <div class="vote-result">${total} votos • 👍 ${percentA}% • 👎 ${percentD}%</div>`}
+        <div class="comment-btn" onclick="toggleComments(this)">💬 ${postComments.length}</div>
+      </div>
+      <div class="vote-bar">
+        <div class="vote-fill-yes" style="width:0%;"></div>
+        <div class="vote-fill-no" style="width:0%;"></div>
+      </div>
+      <div class="comment-section">
+        ${commentsHtml}
+        <input type="text" placeholder="Comentar..." onkeydown="if(event.key==='Enter'){addComment('${p.created}',this.value);this.value=''}">
+      </div>
+    `
+    feed.appendChild(el)
+    setTimeout(()=>{ el.querySelector('.vote-fill-yes').style.width=percentA+'%'; el.querySelector('.vote-fill-no').style.width=percentD+'%' },50)
+  })
+
+  const select=document.getElementById('filterTag')
+  const current=select.value
+  select.innerHTML='<option value="">Todas</option>'+[...tagsSet].map(t=>`<option value="${t}" ${t===current?'selected':''}>${t}</option>`).join('')
+}
+
+// --- FUNÇÕES ---
+function toggleText(el){ const parent=el.parentElement; const fullText=loadPosts().find(p=>escapeHtml(p.text).includes(parent.querySelector('.post-text').innerText.replace('...','')))?.text; if(parent.querySelector('.post-text').innerText.endsWith('...')){ parent.querySelector('.post-text').innerText=fullText; el.innerText='Ver menos' } else{ parent.querySelector('.post-text').innerText=fullText.slice(0,300)+'...'; el.innerText='Ver mais' } }
+function toggleComments(btn){ const section=btn.parentElement.parentElement.querySelector('.comment-section'); section.style.display=section.style.display==='block'?'none':'block' }
+
+function vote(index,type,btn){
+  const posts=loadPosts(); const votes=loadVotes(); if(index<0) return; const post=posts[index]; if(votes[post.created]){alert("Você já votou nesta confissão!");return;}
+  votes[post.created]=type; if(type==='aprov') post.aprov=(post.aprov||0)+1; else post.desaprov=(post.desaprov||0)+1
+  savePosts(posts); saveVotes(votes); renderFeed()
+}
+
+// --- COMENTÁRIOS ---
+function addComment(postId,text){ if(!text.trim()) return; const comments=loadComments(); if(!comments[postId]) comments[postId]=[]; comments[postId].push({user:randomName(), text:text, replies:[]}); saveComments(comments); renderFeed() }
+function addReply(postId,commentIndex,text){ if(!text.trim()) return; const comments=loadComments(); if(!comments[postId] || !comments[postId][commentIndex]) return; comments[postId][commentIndex].replies.push({user:randomName(), text:text}); saveComments(comments); renderFeed() }
+
+// --- PUBLICAR ---
+document.getElementById('btn-post').addEventListener('click',()=>{
+  const name=document.getElementById('txt-name').value.trim(), text=document.getElementById('txt-story').value.trim(), lesson=document.getElementById('txt-lesson').value.trim()
+  if(!text){ alert("Escreva algo antes de publicar!"); return; }
+  if(filterBadWords(text)){ alert("Texto contém palavras proibidas."); return; }
+  const posts=loadPosts()
+  posts.push({name:name||'',text:text,tags:currentTags,lesson:lesson||'',created:Date.now()})
+  savePosts(posts); currentTags=[]; renderTags(); document.getElementById('txt-name').value=''; document.getElementById('txt-story').value=''; document.getElementById('txt-lesson').value=''; renderFeed()
+})
+
+document.getElementById('btn-clear').addEventListener('click',()=>{ document.getElementById('txt-name').value=''; document.getElementById('txt-story').value=''; document.getElementById('txt-lesson').value=''; currentTags=[]; renderTags() })
+document.getElementById('searchTag').addEventListener('input',renderFeed)
+document.getElementById('filterTag').addEventListener('change',renderFeed)
+
+renderFeed()
+</script>
+</body>
+</html>
